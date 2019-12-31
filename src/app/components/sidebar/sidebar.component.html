@@ -1,0 +1,163 @@
+<div class="logo">
+    <a class="simple-text">
+        <div class="logo-img" style="max-height:60px;width: auto;">
+            <img style="text-align: center;max-height:60px;width: auto;
+            position: inherit;" src="assets/img/sidebarnymbus.png" />
+        </div>
+
+    </a>
+    <span class="mt-2 text-center d-block" style="text-align: center;color:#fff">Fleet Manager</span>
+    <span *ngIf="VendorName" class="mt-2 text-center d-block" style="text-align: center;color:#fff">[ {{VendorName}}
+        ]</span>
+</div>
+<!-- <div class="chart">
+        <div class="logo-img" style="max-height:60px;width: auto;">
+          Active Vendor
+          <mat-progress-bar mode="determinate" value="40"></mat-progress-bar>
+          40/100
+        </div>
+      </div> -->
+<div class="sidebar-wrapper">
+    <!-- <div *ngIf="isMobileMenu()">
+        <form class="navbar-form">
+            <span class="bmd-form-group">
+                <div class="input-group no-border">
+                    <input type="text" value="" class="form-control" placeholder="Search...">
+                    <button mat-raised-button type="submit" class="btn btn-white btn-round btn-just-icon">
+                        <i class="material-icons">search</i>
+                        <div class="ripple-container"></div>
+                    </button>
+                </div>
+            </span>
+        </form>
+        <ul class="nav navbar-nav nav-mobile-menu">
+        </ul>
+    </div> -->
+
+    <ul class="nav">
+        <!-- <li routerLinkActive="active" *ngFor="let menuItem of menuItems" class="{{menuItem.class}} nav-item">
+            <a class="nav-link" [routerLink]="[menuItem.path]">
+                <i class="material-icons">{{menuItem.icon}}</i>
+                <p>{{menuItem.title}}</p>
+            </a>
+        </li> -->
+        <li routerLinkActive="active" class="nav-item">
+            <a class="nav-link" [routerLink]="['/admin/dashboard']">
+                <i class="material-icons">dashboard</i>
+                <p>Dashboard</p>
+            </a>
+        </li>
+        <li routerLinkActive="active" class="nav-item">
+            <a class="nav-link" [routerLink]="['/admin/user']">
+                <i class="material-icons">person</i>
+                <p>Users</p>
+            </a>
+        </li>
+        <li routerLinkActive="active" class="nav-item">
+            <a class="nav-link" [routerLink]="['/admin/vehicles']">
+                <i class="material-icons">motorcycle</i>
+                <p>Vehicles</p>
+            </a>
+        </li>
+        <li routerLinkActive="active" class="nav-item">
+            <a class="nav-link" [routerLink]="['/admin/hubslist']">
+                <i class="material-icons">device_hub</i>
+                <p>Hubs</p>
+            </a>
+        </li>
+
+        <li routerLinkActive="active">
+            <a style="cursor: pointer;" class="nav-link" [routerLink]="['/admin/complaint']">
+                <i class="material-icons">library_books</i>
+                <p>Complaint</p>
+            </a>
+        </li>
+
+        <!-- <li routerLinkActive="active" class="nav-item">
+            <a class="nav-link" [routerLink]="['/admin/chargers']">
+                <i class="material-icons">device_hub</i>
+                <p>Charger</p>
+            </a>
+        </li> -->
+        <!-- <li routerLinkActive="active" class="nav-item">
+            <a class="nav-link" [routerLink]="['/admin/reports']">
+                <i class="material-icons">report</i>
+                <p>Reports</p>
+            </a>
+        </li> -->
+        <li routerLinkActive="active" class="nav-item" *ngIf="!Token">
+            <a class="nav-link" [routerLink]="['/admin/user-profile']">
+                <i class="material-icons">settings</i>
+                <p>Profile Setting</p>
+            </a>
+        </li>
+        <!-- <li routerLinkActive="">
+            <a class="nav-link">
+                <i class="material-icons">library_books</i>
+                <p>Supports</p>
+            </a>
+        </li> -->
+        <li routerLinkActive="active" class="nav-item">
+            <a class="nav-link" [routerLink]="['/admin/charging-station-list']">
+              <i class="material-icons">ev_station</i>
+              <p i18n="@@Sidebarcharger">Charging Station</p>
+            </a>
+          </li>
+
+        <li routerLinkActive="" *ngIf="Token">
+            <a style="cursor: pointer;" class="nav-link" (click)="GoToSuperAdminPanel();">
+                <i class="material-icons">power_settings_new</i>
+                <p>Go to Admin</p>
+            </a>
+        </li>
+        <li class="sub-menu-dropdown" routerLinkActive="active" *ngIf="!Token && RoleType.length>1">
+            <a style="cursor: pointer;" class="nav-link" data-toggle="dropdown" id="subMenu" aria-haspopup="true"
+                aria-expanded="false">
+                <i class="material-icons">person</i>
+                <p>Go To Other Panel</p>
+            </a>
+            <ul class="sub-menu dropdown-menu" id="subMenu" aria-labelledby="notificationDropdownMenuLink"
+                style="padding-left: 15px;list-style: none;">
+                
+                <li *ngIf="Utility">
+                    <a style="cursor: pointer;" class="nav-link" [routerLink]="['/zonalmanager/dashboard']">
+                        <i class="material-icons">account_box</i>
+                        <p>Zonal Manager</p>
+                    </a>
+                </li>
+
+                <li *ngIf="ChargingOperator">
+                    <a style="cursor: pointer;" class="nav-link" [routerLink]="['/chargingoperator/dashboard']">
+                        <i class="material-icons">account_box</i>
+                        <p>Charging Operator</p>
+                    </a>
+                </li>
+
+                <li *ngIf="SystemIntegrater">
+                    <a style="cursor: pointer;" class="nav-link" [routerLink]="['/systemaggregator/dashboard']">
+                        <i class="material-icons">account_box</i>
+                        <p>System Integrator</p>
+                    </a>
+                </li>
+
+
+                <li *ngIf="BatteryManufaturer">
+                    <a style="cursor: pointer;" class="nav-link" [routerLink]="['/battery-manufacturer/dashboard']">
+                        <i class="material-icons">account_box</i>
+                        <p>Battery Manufaturer</p>
+                    </a>
+                </li>
+
+
+            </ul>
+        </li>
+        <li routerLinkActive="" *ngIf="!Token" style="cursor: pointer;">
+            <a class="nav-link" (click)="LogOut()">
+                <i class="material-icons">power_settings_new</i>
+                <p>Logout</p>
+            </a>
+        </li>
+        <li class="version-point">Version 1.0.0</li>
+    </ul>
+    <!-- <div class="version-point">Version 1.0.0</div> -->
+</div>

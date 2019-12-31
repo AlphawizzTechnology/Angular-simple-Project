@@ -1,0 +1,18 @@
+
+    <h1 mat-dialog-title>Vehicle Images</h1>
+    <div mat-dialog-content style="width: 520px;" style="overflow: hidden">
+        <div class="col-md-12" *ngIf="imgArr.length; else no_data_templ">
+            <div class="row">
+                   <img class="img-fluid" *ngFor="let item of imgArr" src={{imagepath}}{{item.name}} style="height: 150px;">
+            </div>
+        </div>
+    </div>
+    <div mat-dialog-actions>
+        <button class="mb-0 mr-2 mb-0 mt-0 mat-raised-button mat-primary" mat-button (click)="onNoClick()">Close</button>
+    </div>
+    
+    <ng-template #no_data_templ>
+        <div class="text-center" style="color:red;">
+            No image found...
+        </div>
+    </ng-template>
