@@ -33,7 +33,7 @@
     "@angular/router": "7.0.2",
     "@google/markerclusterer": "^1.0.3",
     "agm-direction": "^0.7.6",
-    "ajv": "6.4.0",
+    "ajv": "6.12.3",
     "angular-fusioncharts": "^3.0.1",
     "angular-highcharts": "^7.0.2",
     "arrive": "2.4.1",
